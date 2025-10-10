@@ -139,3 +139,51 @@ h1 {
     padding: 15px;
   }
 }
+
+/* ========================================
+   ナビゲーションバー
+   ======================================== */
+
+.tab-nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: white;
+}
+
+.tab-nav li {
+  flex: 1;
+}
+
+.tab-nav a {
+  display: block;
+  padding: 12px 0;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.home {
+  background-color: #00BCD4;
+}
+
+.memo {
+  background-color: #8BC34A;
+}
+
+.ranking {
+  background-color: #FFCC5C;
+}
+
+.edit {
+  background-color: #B589D6;
+}
+
+.notifications {
+  background-color: #FF7F50;
+}
+
