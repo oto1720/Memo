@@ -1,7 +1,7 @@
 // ========================================
 // 1. HTML要素を取得する
 // ========================================
-const memoTitle = document.getElementById('memoTitle');
+// const memoTitle = document.getElementById('memoTitle');
 const memoContent = document.getElementById('memoContent');
 const saveButton = document.getElementById('saveButton');
 const memoList = document.getElementById('memoList');
@@ -24,7 +24,7 @@ showMemos();
 // ========================================
 saveButton.addEventListener('click', function() {
   // 入力された値を取得
-  const title = memoTitle.value;
+  // const title = memoTitle.value;
   const content = memoContent.value;
 
   // 内容が空だったら保存しない
@@ -36,7 +36,7 @@ saveButton.addEventListener('click', function() {
   // 新しいメモを作る
   const newMemo = {
     id: Date.now(), // IDは現在時刻を使う
-    title: title || '無題', // タイトルが空なら「無題」にする
+    // title: title || '無題', // タイトルが空なら「無題」にする
     content: content,
     date: new Date().toLocaleString('ja-JP') // 日付と時刻
   };
@@ -48,7 +48,7 @@ saveButton.addEventListener('click', function() {
   saveMemos();
 
   // 入力欄を空にする
-  memoTitle.value = '';
+  // memoTitle.value = '';
   memoContent.value = '';
 
   // 画面を更新
@@ -75,8 +75,8 @@ function showMemos() {
     card.className = 'memo-card';
 
     // タイトル
-    const titleElement = document.createElement('h3');
-    titleElement.textContent = memo.title;
+    // const titleElement = document.createElement('h3');
+    // titleElement.textContent = memo.title;
 
     // 内容
     const contentElement = document.createElement('p');
@@ -96,7 +96,7 @@ function showMemos() {
     });
 
     // カードに要素を追加
-    card.appendChild(titleElement);
+    // card.appendChild(titleElement);
     card.appendChild(contentElement);
     card.appendChild(dateElement);
     card.appendChild(deleteButton);

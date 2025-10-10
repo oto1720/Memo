@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ホーム</title>
+  <title>メモ</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,5 +16,20 @@
       <li><a href="notifications.html" class="notifications">通知</a></li>
     </ul>
   </nav>
+  <div class="container">
+    <h1>メモアプリ</h1>
+
+    <!-- メモを入力するところ -->
+    <div class="input-area">
+      <!-- <input type="text" id="memoTitle" placeholder="タイトル"> -->
+      <textarea id="memoContent" placeholder="メモの内容"></textarea>
+      <button id="saveButton">保存する</button>
+    </div>
+
+    <!-- メモが表示されるところ -->
+    <div id="memoList"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
