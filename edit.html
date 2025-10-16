@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>編集</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <ul class = "tab-nav">
+      <li><a href="index.html" class="home">ホーム</a></li>
+      <li><a href="memo.html" class="memo">メモ</a></li>
+      <li><a href="ranking.html" class="ranking">ランキング</a></li>
+      <li><a href="edit.html" class="edit">編集</a></li>
+      <li><a href="notifications.html" class="notifications">通知</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>今週のワードランキング編集</h1>
+    
+    <div class="edit-area">
+      <div class="week-info">
+        <p id="weekInfo"></p>
+      </div>
+      
+      <div class="input-section">
+        <label for="themeInput">今週の○○ワードTOP3</label>
+        <input type="text" id="themeInput" placeholder="○○の部分を入力（例：前向き、感謝、etc...）">
+      </div>
+      
+      <div class="word-selection">
+        <h3>メモから見つかったワード一覧</h3>
+        <div id="availableWords" class="word-list"></div>
+      </div>
+      
+      <div class="ranking-selection">
+        <h3>TOP3を選択してください</h3>
+        <div class="ranking-item">
+          <label>1位:</label>
+          <select id="rank1"></select>
+        </div>
+        <div class="ranking-item">
+          <label>2位:</label>
+          <select id="rank2"></select>
+        </div>
+        <div class="ranking-item">
+          <label>3位:</label>
+          <select id="rank3"></select>
+        </div>
+      </div>
+      
+      <button id="saveRankingButton" disabled>
+        <span class="button-content">
+          <span class="button-icon">✨</span>
+          <span>決定</span>
+        </span>
+      </button>
+      <div id="editStatus" class="edit-status"></div>
+    </div>
+  </div>
+
+  <!-- デバッグ用削除ボタンを追加 -->
+      <div class="debug-section">
+        <button id="debugDeleteButton" class="debug-button">
+          <span class="button-content">
+            <span class="button-icon">🗑️</span>
+            <span>デバッグ: 今週のランキングを削除</span>
+          </span>
+        </button>
+        <button id="debugDeleteAllButton" class="debug-button danger">
+          <span class="button-content">
+            <span class="button-icon">💥</span>
+            <span>デバッグ: 全てのランキングを削除</span>
+          </span>
+        </button>
+      </div>
+      
+      <div id="editStatus" class="edit-status"></div>
+  
+  <script src="edit.js"></script>
+</body>
+</html>
