@@ -493,6 +493,211 @@ h1 {
   margin-bottom: 15px;
   border-left: 5px solid #FF7F50;
 }
+/* --- 左右分割エリア全体のスタイル --- */
+.ranking-header-section {
+    display: flex;
+    gap: 30px;
+    padding: 30px 20px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #ddd;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 左右の幅の比率を 2:1 に設定 */
+.positive-quote {
+    /* 2/3 の幅: flex-grow: 2 */
+    flex: 2; 
+}
+
+
+/* --- 左側: 今日の前向きなワード --- */
+.positive-quote h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.quote-content {
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: center; /* 水平方向の中央揃え */
+    height: 150px;
+    margin-left: 40px;
+}
+
+.character img {
+    width: 60px; /* キャラクター画像のサイズ */
+    height: auto;
+    display: block;
+    margin-right: 15px;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #e0f7fa; /* 吹き出しの背景色 */
+    border: 1px solid #00bcd4;
+    border-radius: 20px;
+    padding: 50px 100px;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* 吹き出しのしっぽ（左に突き出す部分） */
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent #00bcd4 transparent transparent;
+}
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent #e0f7fa transparent transparent;
+}
+
+.speech-bubble p {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.weekly-ranking {
+ /* 1/3 の幅 */
+ flex: 1;
+    /* padding: 10px; は card クラスで既に20px設定されているため削除 */
+    /* ここは削除推奨 */
+}
+.card {
+    background-color: #ffffff; /* カードの背景色を白に */
+    border-radius: 8px;        /* 角を丸くする */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 軽い影をつける */
+    padding: 20px;             /* カードの内側の余白 */
+    height: fit-content;       /* コンテンツの高さに合わせる */
+}
+/* --- 右側: 先週のランキング --- */
+.weekly-ranking h2 {
+  /* flex: 1; と padding: 10px; は削除し、見出しに必要なものだけ残す */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ranking-list {
+    list-style: none; /* デフォルトの数字を消す */
+    padding: 0;
+}
+
+.ranking-list li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.medal {
+    font-size: 1.5em; /* メダルの絵文字を大きく */
+    margin-right: 10px;
+    width: 30px; /* 位置を揃えるため固定幅に */
+    text-align: center;
+}
+
+
+/* --- レスポンシブ対応 (画面幅が狭い場合) --- */
+@media screen and (max-width: 768px) {
+    .ranking-header-section {
+        flex-direction: column; /* 縦並びにする */
+        gap: 20px;
+        padding: 20px 10px;
+    }
+    .positive-quote,
+    .weekly-ranking {
+        /* 縦並びの際にはpaddingは不要な場合があるため調整 */
+        padding: 0;
+    }
+}
+.section {
+    padding: 30px 15px;
+}
+.section-headline {
+        font-size: 30px;
+        margin: 0 0 20px;
+    }
+.grid {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.grid-item {
+    list-style: none;
+}
+.grid-col-2 > .grid-item {
+    width: 50%;
+}
+.grid-col-3 > .grid-item {
+    width: 33.3%;
+}
+.grid-col-4 > .grid-item {
+    width: 25%;
+}
+.card-link {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    transition: background-color .25s;
+}
+.card-label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #999;
+    color: #fff;
+    display: block;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.card-image {
+    width: 100%;
+    height: auto;
+}
+.card-info {
+    padding: 5px 10px;
+}
+.card-headline {
+    margin: 0;
+}
+.card-description {
+    margin: 0;
+}
+.avatar {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+}
+.avatar-name {
+    font-weight: bold;
+    padding-left: 15px;
+}
+.avatar-image {
+    margin: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+    /* ... ここには .card の定義を残さない ... */
+}
 
 /* 通知タイプ別のスタイル */
 .notification-item.ranking_immediate {
