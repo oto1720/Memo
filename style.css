@@ -9,6 +9,7 @@
 
 body {
   font-family: Arial, sans-serif;
+  /* 背景グラデーションを削除して元の色に戻す */
   background-color: #f0f0f0;
   padding: 20px;
 }
@@ -17,8 +18,10 @@ body {
    メインコンテナ
    ======================================== */
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: none; /* 最大幅制限を削除 */
+  margin: 0;
+  padding: 0 20px;
+  background: transparent;
 }
 
 h1 {
@@ -581,4 +584,792 @@ h1 {
 .debug-button:active {
   transform: translateY(0);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   メモ画面のレイアウト
+   ======================================== */
+.memo-main-area {
+  position: relative;
+  display: block;
+}
+
+.memo-content-area {
+  max-width: 600px; /* 元の中央配置時と同じ幅 */
+  margin: 0 auto; /* 中央配置 */
+  padding-right: 0; /* デフォルトは右余白なし */
+}
+
+.filter-panel {
+  position: fixed;
+  top: 80px; /* ナビゲーションバーの下 */
+  right: 20px; /* 右端から20px */
+  width: 300px; /* 固定幅 */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* ========================================
+   フィルターパネルのスタイル
+   ======================================== */
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.filter-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.clear-filters-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.clear-filters-btn:hover {
+  background-color: #d32f2f;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+.filter-section input,
+.filter-section select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.custom-date-range {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-date-range input {
+  flex: 1;
+}
+
+.custom-date-range span {
+  color: #666;
+  font-size: 14px;
+}
+
+.filter-result {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.filter-result p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* メモカードの追加スタイル */
+.memo-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #999;
+}
+
+.char-count {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+/* 検索ハイライト */
+mark {
+  background-color: #ffeb3b;
+  color: #333;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ========================================
+   レスポンシブ対応の修正
+   ======================================== */
+/* フィルターパネルが入らない場合（画面幅が狭い場合） */
+@media (max-width: 1200px) {
+  .memo-content-area {
+    padding-right: 0; /* 右余白を削除 */
+  }
+  
+  .filter-panel {
+    position: static; /* 固定配置を解除 */
+    width: 100%; /* 横幅最大 */
+    max-width: 600px; /* メモエリアと同じ最大幅 */
+    margin: 30px auto 0; /* メモの下に配置、中央寄せ */
+    max-height: none; /* 高さ制限を解除 */
+  }
+  
+  .memo-main-area {
+    display: block;
+  }
+}
+
+/* さらに狭い画面での調整 */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .memo-content-area {
+    max-width: none; /* スマホでは幅制限なし */
+  }
+  
+  .filter-panel {
+    max-width: none; /* スマホでは幅制限なし */
+    margin: 20px 0 0; /* 上下マージンのみ */
+  }
+}
+
+/* 非常に狭い画面 */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .input-area {
+    padding: 15px;
+  }
+}
+
+/* ========================================
+   ダッシュボードのスタイル
+   ======================================== */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  /* 背景グラデーションを削除 */
+  background: transparent;
+  min-height: 100vh;
+}
+
+.dashboard h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard h2 {
+  color: #1976d2;
+  margin: 30px 0 20px 0;
+  font-size: 22px;
+  font-weight: 500;
+  position: relative;
+  padding-left: 15px;
+}
+
+.dashboard h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 20px;
+  background: linear-gradient(45deg, #4FC3F7, #00BCD4);
+  border-radius: 3px;
+}
+
+/* サマリーカード*/
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.summary-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fcff 100%);
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 
+    0 8px 32px rgba(33, 150, 243, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(33, 150, 243, 0.1);
+}
+
+.summary-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4FC3F7, #00BCD4, #0277BD);
+  border-radius: 20px 20px 0 0;
+}
+
+.summary-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 16px 48px rgba(33, 150, 243, 0.25),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.memo-summary {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fcf8 100%);
+}
+
+.ranking-summary {
+  background: linear-gradient(145deg, #ffffff 0%, #fffcf8 100%);
+}
+
+.notification-summary {
+  background: linear-gradient(145deg, #ffffff 0%, #fff8f8 100%);
+}
+
+.card-icon {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.card-content h3 {
+  color: #1976d2;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.card-content .count {
+  font-size: 42px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #4FC3F7, #00BCD4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  text-align: center;
+  line-height: 1;
+}
+
+.card-content small {
+  color: #42A5F5;
+  font-size: 14px;
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+.card-link {
+  display: block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #E3F2FD, #E1F5FE);
+  color: #1976d2;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.card-link:hover {
+  background: linear-gradient(45deg, #4FC3F7, #00BCD4);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* 最近の活動 */
+.recent-activity {
+  margin-bottom: 50px;
+}
+
+.activity-section {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fcff 100%);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 
+    0 8px 32px rgba(33, 150, 243, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(33, 150, 243, 0.1);
+}
+
+.activity-section h3 {
+  color: #1976d2;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(33, 150, 243, 0.2);
+  position: relative;
+}
+
+.activity-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #4FC3F7, #00BCD4);
+  border-radius: 1px;
+}
+
+.recent-memo {
+  background: linear-gradient(135deg, #f8fcf8 0%, #f0f8f0 100%);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #a8d8a8;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(168, 216, 168, 0.1);
+}
+
+.recent-memo:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 16px rgba(168, 216, 168, 0.2);
+}
+
+.recent-content {
+  color: #4a5a4a;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.recent-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6a7a6a;
+  align-items: center;
+}
+
+.recent-length {
+  background: linear-gradient(45deg, #c8e6c8, #a8d8a8);
+  color: #2d5a2d;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.ranking-preview {
+  background: linear-gradient(135deg, #fffcf8 0%, #fef8f0 100%);
+  border-radius: 15px;
+  padding: 20px;
+  border-left: 4px solid #f4d47a;
+}
+
+.ranking-preview h4 {
+  color: #8b5a3c;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rank-preview {
+  background: linear-gradient(135deg, #ffffff 0%, #fefaf6 100%);
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #8b5a3c;
+  box-shadow: 0 2px 8px rgba(244, 212, 122, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.rank-preview:hover {
+  transform: translateX(5px);
+}
+
+.no-ranking-dashboard {
+  text-align: center;
+  padding: 30px;
+  color: #42A5F5;
+  background: linear-gradient(135deg, #E3F2FD 0%, #E1F5FE 100%);
+  border-radius: 15px;
+}
+
+.create-ranking-btn {
+  margin-top: 15px;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #4FC3F7, #00BCD4);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.create-ranking-btn:hover {
+  background: linear-gradient(45deg, #29B6F6, #00ACC1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+}
+
+.recent-notification {
+  background: linear-gradient(135deg, #fff8f8 0%, #fef0f0 100%);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #f4a5a5;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(244, 165, 165, 0.1);
+}
+
+.recent-notification:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 16px rgba(244, 165, 165, 0.2);
+}
+
+.notification-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.notification-title {
+  font-weight: 500;
+  color: #8b4a4a;
+  font-size: 15px;
+}
+
+.notification-date {
+  font-size: 13px;
+  color: #9a6a6a;
+}
+
+.no-data {
+  text-align: center;
+  color: #42A5F5;
+  font-style: italic;
+  padding: 30px;
+  background: linear-gradient(135deg, #E3F2FD 0%, #E1F5FE 100%);
+  border-radius: 15px;
+  font-size: 15px;
+}
+
+/* クイックアクション */
+.quick-actions {
+  margin-bottom: 50px;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 25px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.action-btn:hover::before {
+  left: 100%;
+}
+
+/* メモボタン */
+.memo-btn {
+  background: linear-gradient(45deg, #8BC34A, #7BC87B);
+  box-shadow: 0 8px 24px rgba(139, 195, 74, 0.3);
+}
+
+.memo-btn:hover {
+  background: linear-gradient(45deg, #7CB342, #6BB66B);
+}
+
+/* ランキング編集ボタン */
+.ranking-btn {
+  background: linear-gradient(45deg, #B589D6, #A076C6);
+  box-shadow: 0 8px 24px rgba(181, 137, 214, 0.3);
+}
+
+.ranking-btn:hover {
+  background: linear-gradient(45deg, #A076C6, #9568B6);
+}
+
+/* 通知ボタン */
+.notification-btn {
+  background: linear-gradient(45deg, #FF7F50, #FF6B47);
+  box-shadow: 0 8px 24px rgba(255, 127, 80, 0.3);
+}
+
+.notification-btn:hover {
+  background: linear-gradient(45deg, #FF6B47, #FF5A37);
+}
+
+.action-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.btn-icon {
+  font-size: 26px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* ========================================
+   通知画面の共有機能スタイル
+   ======================================== */
+
+/* 通知アクション */
+.notification-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.share-btn, .delete-notification-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+  background-color: rgba(79, 195, 247, 0.2);
+  transform: scale(1.1);
+}
+
+.delete-notification-btn:hover {
+  background-color: rgba(255, 127, 80, 0.2);
+  transform: scale(1.1);
+}
+
+/* 成功メッセージ */
+.share-success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(45deg, #4CAF50, #45a049);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  z-index: 10000;
+  font-weight: 500;
+  animation: slideInFromRight 0.3s ease;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 共有モーダル */
+.share-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.share-modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.share-modal-content h3 {
+  color: #1976d2;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.share-modal-content p {
+  color: #666;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.share-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  margin-bottom: 20px;
+}
+
+.share-modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.select-text-btn, .close-modal-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.select-text-btn {
+  background: linear-gradient(45deg, #4FC3F7, #00BCD4);
+  color: white;
+}
+
+.select-text-btn:hover {
+  background: linear-gradient(45deg, #29B6F6, #00ACC1);
+  transform: translateY(-2px);
+}
+
+.close-modal-btn {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.close-modal-btn:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* 通知ヘッダーの調整 */
+.notification-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  justify-content: space-between;
+}
+
+.notification-title {
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+  .share-success-message {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    text-align: center;
+  }
+  
+  .share-modal-content {
+    padding: 20px;
+  }
+  
+  .share-modal-buttons {
+    flex-direction: column;
+  }
+  
+  .notification-actions {
+    gap: 5px;
+  }
+  
+  .share-btn, .delete-notification-btn {
+    font-size: 14px;
+    padding: 3px;
+  }
 }

@@ -16,20 +16,84 @@
       <li><a href="notifications.html" class="notifications">通知</a></li>
     </ul>
   </nav>
-  <div class="container">
+  <div class="dashboard">
     <h1>メモアプリ</h1>
 
-    <!-- メモを入力するところ -->
-    <div class="input-area">
-      <!-- <input type="text" id="memoTitle" placeholder="タイトル"> -->
-      <textarea id="memoContent" placeholder="メモの内容"></textarea>
-      <button id="saveButton">保存する</button>
-    </div>
+    <!-- メイン・フィルターエリア -->
+    <div class="memo-main-area">
+      <!-- 左側：メモ入力・表示エリア -->
+      <div class="memo-content-area">
+        <!-- メモを入力するところ -->
+        <div class="input-area">
+          <textarea id="memoContent" placeholder="メモの内容"></textarea>
+          <button id="saveButton">保存する</button>
+        </div>
 
-    <!-- メモが表示されるところ -->
-    <div id="memoList"></div>
+        <!-- メモが表示されるところ -->
+        <div id="memoList"></div>
+      </div>
+
+      <!-- 右側：フィルターパネル -->
+      <div class="filter-panel">
+        <div class="filter-header">
+          <h3>🔍 フィルター</h3>
+          <button id="clearFilters" class="clear-filters-btn">クリア</button>
+        </div>
+
+        <!-- 検索フィルター -->
+        <div class="filter-section">
+          <label for="searchInput">キーワード検索</label>
+          <input type="text" id="searchInput" placeholder="内容を検索...">
+        </div>
+
+        <!-- 日付フィルター -->
+        <div class="filter-section">
+          <label>作成日</label>
+          <select id="dateFilter">
+            <option value="all">すべて</option>
+            <option value="today">今日</option>
+            <option value="week">今週</option>
+            <option value="month">今月</option>
+            <option value="custom">期間指定</option>
+          </select>
+          
+          <div id="customDateRange" class="custom-date-range" style="display: none;">
+            <input type="date" id="startDate">
+            <span>〜</span>
+            <input type="date" id="endDate">
+          </div>
+        </div>
+
+        <!-- 文字数フィルター -->
+        <div class="filter-section">
+          <label>文字数</label>
+          <select id="lengthFilter">
+            <option value="all">すべて</option>
+            <option value="short">短い (10文字以下)</option>
+            <option value="medium">普通 (11-50文字)</option>
+            <option value="long">長い (51文字以上)</option>
+          </select>
+        </div>
+
+        <!-- 並び順 -->
+        <div class="filter-section">
+          <label>並び順</label>
+          <select id="sortOrder">
+            <option value="newest">新しい順</option>
+            <option value="oldest">古い順</option>
+            <option value="shortest">文字数少ない順</option>
+            <option value="longest">文字数多い順</option>
+          </select>
+        </div>
+
+        <!-- フィルター結果表示 -->
+        <div class="filter-result">
+          <p id="filterCount">全 <span id="totalCount">0</span> 件</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="memo.js"></script>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ホーム</title>
+  <title>ホーム - メモアプリ</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav>
-    <ul class = "tab-nav">
+    <ul class="tab-nav">
       <li><a href="index.html" class="home">ホーム</a></li>
       <li><a href="memo.html" class="memo">メモ</a></li>
       <li><a href="ranking.html" class="ranking">ランキング</a></li>
@@ -16,5 +16,90 @@
       <li><a href="notifications.html" class="notifications">通知</a></li>
     </ul>
   </nav>
+
+  <div class="container">
+    <div class="dashboard">
+      <h1>ダッシュボード</h1>
+      
+      <!-- サマリーカード -->
+      <div class="summary-cards">
+        <div class="summary-card memo-summary">
+          <div class="card-icon">📝</div>
+          <div class="card-content">
+            <h3>保存済みメモ</h3>
+            <p class="count" id="memoCount">0</p>
+            <small>件</small>
+          </div>
+          <a href="memo.html" class="card-link">メモを見る</a>
+        </div>
+
+        <div class="summary-card ranking-summary">
+          <div class="card-icon">🏆</div>
+          <div class="card-content">
+            <h3>ランキング</h3>
+            <p class="count" id="rankingCount">0</p>
+            <small>週分作成済み</small>
+          </div>
+          <a href="ranking.html" class="card-link">ランキングを見る</a>
+        </div>
+
+        <div class="summary-card notification-summary">
+          <div class="card-icon">🔔</div>
+          <div class="card-content">
+            <h3>未読通知</h3>
+            <p class="count" id="notificationCount">0</p>
+            <small>件</small>
+          </div>
+          <a href="notifications.html" class="card-link">通知を見る</a>
+        </div>
+      </div>
+
+      <!-- 最近の活動 -->
+      <div class="recent-activity">
+        <h2>📈 最近の活動</h2>
+        
+        <!-- 最新メモ -->
+        <div class="activity-section">
+          <h3>最新のメモ</h3>
+          <div id="recentMemos" class="recent-items"></div>
+        </div>
+
+        <!-- 今週のランキング -->
+        <div class="activity-section">
+          <h3>今週のランキング</h3>
+          <div id="currentRanking" class="current-ranking"></div>
+        </div>
+
+        <!-- 最新通知 -->
+        <div class="activity-section">
+          <h3>最新の通知</h3>
+          <div id="recentNotifications" class="recent-items"></div>
+        </div>
+      </div>
+
+      <!-- クイックアクション -->
+      <div class="quick-actions">
+        <h2>⚡ クイックアクション</h2>
+        <div class="action-buttons">
+          <button class="action-btn memo-btn" onclick="location.href='memo.html'">
+            <span class="btn-icon">📝</span>
+            <span>新しいメモを作成</span>
+          </button>
+          
+          <button class="action-btn ranking-btn" onclick="location.href='edit.html'">
+            <span class="btn-icon">🏆</span>
+            <span>ランキングを編集</span>
+          </button>
+          
+          <button class="action-btn notification-btn" onclick="location.href='notifications.html'">
+            <span class="btn-icon">🔔</span>
+            <span>通知を確認</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
 </body>
 </html>
